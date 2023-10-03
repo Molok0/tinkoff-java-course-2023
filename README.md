@@ -1,5 +1,5 @@
-![Build Status](https://github.com/sanyarnd/java-course-2023/actions/workflows/build.yml/badge.svg)
+![Build Status](https://github.com/Molok0/tinkoff-java-course-2023/actions)
 
 Домашние задания курса https://fintech.tinkoff.ru/academy/java
 
-Студент: `ФИО`
+Студент: `Прошин Дмитрий Олегович`
