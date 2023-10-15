@@ -4,12 +4,12 @@ import static java.lang.Math.abs;
 
 public class Task2 {
 
-    public static int countDigits(long number){
+    public static int countDigits(long number) {
         int count;
 
-        if (number == 0){
+        if (number == 0) {
             count = 1;
-        }else{
+        } else {
             count = (int) Math.log10(abs(number)) + 1;
         }
         return count;

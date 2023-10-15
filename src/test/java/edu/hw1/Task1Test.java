@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Task1Test {
     @Test
-    void minutesToSeconds(){
+    void minutesToSeconds() {
         ArrayList<Long> expected = new ArrayList<>();
         ArrayList<Long> answers = new ArrayList<>();
 

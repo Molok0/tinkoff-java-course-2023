@@ -11,7 +11,7 @@ public class Task6 {
     private static int count = 0;
 
     public static int countK(int number) {
-        if (check(number)){
+        if (check(number)) {
             return -1;
         }
         if (number == numberK) {
@@ -41,11 +41,12 @@ public class Task6 {
         return number;
     }
 
-    private static boolean check(int number){
+    private static boolean check(int number) {
         char[] num = Integer.toString(number).toCharArray();
-        for (int i = 0; i < num.length - 1; i++){
-            if (num[i] != num[i+1])
+        for (int i = 0; i < num.length - 1; i++) {
+            if (num[i] != num[i + 1]) {
                 return false;
+            }
         }
         return true;
     }
