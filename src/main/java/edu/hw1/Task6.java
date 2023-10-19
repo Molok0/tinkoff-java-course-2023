@@ -7,13 +7,14 @@ import static java.util.Collections.reverse;
 import static java.util.Collections.sort;
 
 public class Task6 {
-    private static int numberK = 6174;
-    private static int count = 0;
+    private static final int numberK = 6174;
 
     public static int countK(int number) {
-        if (check(number)) {
-            return -1;
-        }
+        int count = 0;
+        return start(number,count);
+    }
+
+    private static int start(int number, int count){
         if (number == numberK) {
             return count;
         } else {
@@ -29,7 +30,7 @@ public class Task6 {
 
             number = digitsToNumber(descendingOrder) - digitsToNumber(numbers);
             count += 1;
-            return countK(number);
+            return start(number, count);
         }
     }
 
@@ -41,14 +42,5 @@ public class Task6 {
         return number;
     }
 
-    private static boolean check(int number) {
-        char[] num = Integer.toString(number).toCharArray();
-        for (int i = 0; i < num.length - 1; i++) {
-            if (num[i] != num[i + 1]) {
-                return false;
-            }
-        }
-        return true;
-    }
 }
 

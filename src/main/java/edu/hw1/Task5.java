@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class Task5 {
-    private static int firstNumber;
-    private static int secondNumber;
 
     public static boolean isPalindromeDescendant(int number) {
 
@@ -14,7 +12,6 @@ public class Task5 {
         int secondNumber;
 
         String currNumber = String.valueOf(number);
-        System.out.println(currNumber);
         if (currNumber.length() < 2) {
             return false;
         }
@@ -34,7 +31,6 @@ public class Task5 {
     }
 
     private static boolean isPalindrome(String number) {
-
         return number.equals(new StringBuilder(number).reverse().toString());
     }
 
