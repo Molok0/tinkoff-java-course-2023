@@ -3,6 +3,7 @@ package edu.hw1;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import static java.util.Collections.min;
 import static java.util.Collections.reverse;
 import static java.util.Collections.sort;
 
@@ -25,10 +26,11 @@ public class Task6 {
                 number /= 10;
             }
             Collections.sort(numbers);
-            ArrayList<Integer> descendingOrder = new ArrayList<>(numbers);
-            Collections.reverse(descendingOrder);
+            int minNumber = digitsToNumber(numbers);
+            Collections.reverse(numbers);
+            int maxNumber = digitsToNumber(numbers);
 
-            number = digitsToNumber(descendingOrder) - digitsToNumber(numbers);
+            number = maxNumber - minNumber;
             count += 1;
             return start(number, count);
         }

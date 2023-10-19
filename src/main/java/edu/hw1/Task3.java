@@ -8,10 +8,10 @@ public class Task3 {
         if (a1.length == 0 || a2.length == 0) {
             return false;
         }
-        int min_a1 = Arrays.stream(a1).min().getAsInt();
-        int max_a1 = Arrays.stream(a1).max().getAsInt();
-        int min_a2 = Arrays.stream(a2).min().getAsInt();
-        int max_a2 = Arrays.stream(a2).max().getAsInt();
-        return min_a1 > min_a2 && max_a1 < max_a2;
+        int minA1 = Arrays.stream(a1).min().getAsInt();
+        int maxA1 = Arrays.stream(a1).max().getAsInt();
+        int minA2 = Arrays.stream(a2).min().getAsInt();
+        int maxA2 = Arrays.stream(a2).max().getAsInt();
+        return minA1 > minA2 && maxA1 < maxA2;
     }
 }
