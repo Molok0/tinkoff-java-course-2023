@@ -8,7 +8,6 @@ public class DictionaryTest {
     @Test
     void randomWord(){
         String[] words = new String[]{"test", "string"};
-        GallowsDictionary gallowsDictionary;
         assertThat(new GallowsDictionary().randomWord(words)).isNotEqualTo("");
     }
 }

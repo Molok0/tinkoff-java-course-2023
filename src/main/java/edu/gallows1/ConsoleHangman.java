@@ -42,9 +42,14 @@ class ConsoleHangman {
             // Конец игры при победе или поражении
 
             if (guessResult.message() == Session.loseMassage || guessResult.message() == Session.winMassage) {
+                System.out.println(gameProgress);
                 break;
             }
         }
+    }
+
+    public List<String> getGameProgress() {
+        return gameProgress;
     }
 
     private GuessResult tryGuess(Session session, String input) {
