@@ -45,8 +45,8 @@ class Session {
     }
 
     private void changeUserAnswer(char guess) {
-        for (int i = 0; i < answer.length(); i++){
-            if (answer.charAt(i) == guess){
+        for (int i = 0; i < answer.length(); i++) {
+            if (answer.charAt(i) == guess) {
                 userAnswer[i] = guess;
             }
         }

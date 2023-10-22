@@ -6,18 +6,12 @@ class ConsoleHangman {
 
     private static String guessMassage = "Guess a letter:";
     private static String stopMassage = "Exit";
-    private final static int maxAttemps = 5;
+    private final static int maxAttempt = 5;
 
     private Session session;
 
-    public ConsoleHangman(Session session) {
+    ConsoleHangman(Session session) {
         this.session = session;
-    }
-
-    public static void main(String[] args) {
-        String[] words = new String[] {"milk", "man"};
-        ConsoleHangman consoleHangman = new ConsoleHangman(new Session(maxAttemps, words));
-        consoleHangman.run();
     }
 
     public void run() {

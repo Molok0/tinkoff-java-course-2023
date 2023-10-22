@@ -3,7 +3,7 @@ package edu.gallows.DictionaryModel;
 import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 
-public class GallowsDictionary implements Dictionary{
+public class GallowsDictionary implements Dictionary {
     @Override
     public @NotNull String randomWord(String[] words) {
         Random random = new Random();
