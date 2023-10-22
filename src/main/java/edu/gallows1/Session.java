@@ -1,6 +1,6 @@
 package edu.gallows1;
 
-import edu.gallows.DictionaryModel.GallowsDictionary;
+import edu.gallows1.DictionaryModel.GallowsDictionary;
 import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.Formatter;

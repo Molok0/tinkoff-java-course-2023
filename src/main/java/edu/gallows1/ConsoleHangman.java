@@ -10,7 +10,7 @@ class ConsoleHangman {
     private static String stopMassage = "Exit";
     private static String invalidMassage = "Invalid value";
     private final static int maxAttempt = 5;
-    private final List<String> gameProgress= new ArrayList<String>();
+    private final List<String> gameProgress = new ArrayList<String>();
 
     private Session session;
 
