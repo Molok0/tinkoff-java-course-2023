@@ -7,7 +7,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class DictionaryTest {
     @Test
     void randomWord(){
-        String[] words = new String[]{"test", "string", "course"};
+        String[] words = new String[]{"test", "string", "course", "git"};
         assertThat(new GallowsDictionary().randomWord(words)).isNotEqualTo("");
     }
 }
