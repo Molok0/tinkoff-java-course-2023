@@ -1,7 +1,7 @@
 package edu.hw1;
 
 public class Task1 {
-    private static int sec = 60;
+    private final static int sec = 60;
 
     public static long minutesToSeconds(String a) {
         String[] time = a.split(":");

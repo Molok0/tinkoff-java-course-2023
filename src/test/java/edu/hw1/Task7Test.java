@@ -28,4 +28,13 @@ public class Task7Test {
     void rotateLeft() {
         assertThat(Task7.rotateLeft(3, 3)).isEqualTo(3);
     }
+    @Test
+    void rotateRightBig() {
+        assertThat(Task7.rotateRight(8, 50)).isEqualTo(2);
+    }
+    @Test
+    void rotateLeftBig() {
+        assertThat(Task7.rotateLeft(8, 9)).isEqualTo(1);
+    }
+
 }
