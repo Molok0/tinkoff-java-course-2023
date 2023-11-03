@@ -1,18 +1,26 @@
 package edu.gallows1;
 
+import edu.gallows1.DictionaryModel.GallowsDictionary;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 class ConsoleHangman {
 
-    private static String guessMassage = "Guess a letter:";
-    private static String stopMassage = "Exit";
-    private static String invalidMassage = "Invalid value";
-    private final static int maxAttempt = 5;
-    private final List<String> gameProgress = new ArrayList<String>();
+    private static final String GUESS_MESSAGE = "Guess a letter:";
+    private static final String STOP_MESSAGE = "Exit";
+    private static final String INVALID_MESSAGE = "Invalid value";
+    private final static int MAX_ATTEMPT = 5;
+    private final List<String> GAME_PROGRESS = new ArrayList<String>();
 
     private Session session;
+
+    public static void main(String[] args) {
+        String[] words = new String[]{"text", "word", "type"};
+        ConsoleHangman consoleHangman =
+            new ConsoleHangman(new Session(5, words));
+        consoleHangman.run();
+    }
 
     ConsoleHangman(Session session) {
         this.session = session;
@@ -21,35 +29,33 @@ class ConsoleHangman {
     public void run() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            gameProgress.add(guessMassage);
-            System.out.println(guessMassage);
+            GAME_PROGRESS.add(GUESS_MESSAGE);
+            System.out.println(GUESS_MESSAGE);
             var input = scanner.nextLine();
 
-            if (input.equals(stopMassage)) {
+            if (input.equals(STOP_MESSAGE)) {
                 break;
             }
 
             if (input.length() != 1) {
-                gameProgress.add(invalidMassage);
-                System.out.println(invalidMassage);
+                GAME_PROGRESS.add(INVALID_MESSAGE);
+                System.out.println(INVALID_MESSAGE);
                 continue;
             }
-
-            char[] charArray = input.toCharArray();
 
             GuessResult guessResult = tryGuess(this.session, input);
             printState(guessResult);
             // Конец игры при победе или поражении
 
-            if (guessResult.message() == Session.loseMassage || guessResult.message() == Session.winMassage) {
-                System.out.println(gameProgress);
+            if (guessResult instanceof GuessResult.Win || guessResult instanceof GuessResult.Defeat) {
+                System.out.println(GAME_PROGRESS);
                 break;
             }
         }
     }
 
     public List<String> getGameProgress() {
-        return gameProgress;
+        return GAME_PROGRESS;
     }
 
     private GuessResult tryGuess(Session session, String input) {
@@ -57,8 +63,8 @@ class ConsoleHangman {
     }
 
     private void printState(GuessResult guess) {
-        gameProgress.add(guess.message());
-        gameProgress.add("The word: " + guess.word());
+        GAME_PROGRESS.add(guess.message());
+        GAME_PROGRESS.add("The word: " + guess.word());
         System.out.println(guess.message());
         System.out.println("The word: " + guess.word());
     }

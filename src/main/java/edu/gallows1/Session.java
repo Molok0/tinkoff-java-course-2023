@@ -59,7 +59,7 @@ class Session {
 
     private boolean letterInAnswer(char guess) {
         for (int i = 0; i < answer.length(); i++) {
-            if (answer.charAt(i) == guess) {
+            if (answer.charAt(i) == Character.toLowerCase(guess)) {
                 return true;
             }
         }
