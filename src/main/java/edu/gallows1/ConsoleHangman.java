@@ -19,14 +19,6 @@ class ConsoleHangman {
     private Session session;
     private Scanner scanner;
 
-//    public static void main(String[] args) {
-//        String[] words = new String[] {"text", "word", "type"};
-//        ConsoleHangman consoleHangman =
-//            new ConsoleHangman(new Session(5, words));
-//        consoleHangman.setScanner();
-//        consoleHangman.run();
-//    }
-
     ConsoleHangman(Session session) {
         this.session = session;
     }
