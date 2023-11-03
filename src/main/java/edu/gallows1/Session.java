@@ -1,14 +1,14 @@
 package edu.gallows1;
 
 import edu.gallows1.DictionaryModel.GallowsDictionary;
-import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.Formatter;
+import org.jetbrains.annotations.NotNull;
 
 class Session {
-    public static final String winMassage = "Win!";
-    public static final String loseMassage = "Lose!";
-    public static final String hitMassage = "Hit!";
+    public static final String WIN_MESSAGE = "Win!";
+    public static final String LOSE_MESSAGE = "Lose!";
+    public static final String HIT_MASSAGE = "Hit!";
     private final String answer;
     private final char[] userAnswer;
     private final int maxAttempts;
@@ -31,9 +31,9 @@ class Session {
     @NotNull GuessResult guess(char guess) {
         if (letterInAnswer(guess)) {
             if (winGame(guess)) {
-                return new GuessResult.Win(new String(this.userAnswer), attempts, winMassage);
+                return new GuessResult.Win(new String(this.userAnswer), attempts, WIN_MESSAGE);
             }
-            return new GuessResult.SuccessfulGuess(new String(this.userAnswer), attempts, hitMassage);
+            return new GuessResult.SuccessfulGuess(new String(this.userAnswer), attempts, HIT_MASSAGE);
         }
         attempts += 1;
         if (attempts == maxAttempts) {
@@ -67,6 +67,6 @@ class Session {
     }
 
     @NotNull GuessResult giveUp() {
-        return new GuessResult.Defeat(new String(this.userAnswer), attempts, loseMassage);
+        return new GuessResult.Defeat(new String(this.userAnswer), attempts, LOSE_MESSAGE);
     }
 }

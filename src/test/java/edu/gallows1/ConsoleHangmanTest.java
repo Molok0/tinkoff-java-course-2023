@@ -9,10 +9,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class ConsoleHangmanTest {
 
-    private static List<String> getGameProgress(List<String> input) {
-        return new ArrayList<>();
-    }
-
     @Test
     void testThatGameProgress() {
         List<String> gameProgress = new ArrayList<>();
@@ -48,6 +44,42 @@ public class ConsoleHangmanTest {
         consoleHangman.setScanner(byteArrayInputStream);
         consoleHangman.run();
         assertThat(consoleHangman.getGameProgress()).isEqualTo(gameProgress);
+    }
 
+    @Test
+    void testThatLoseGame() {
+        List<String> gameProgress = new ArrayList<>();
+        gameProgress.add("Guess a letter:");
+        gameProgress.add("Missed, mistake 1 out of 5.");
+        gameProgress.add("The word: ****");
+        gameProgress.add("Guess a letter:");
+        gameProgress.add("Missed, mistake 2 out of 5.");
+        gameProgress.add("The word: ****");
+        gameProgress.add("Guess a letter:");
+        gameProgress.add("Missed, mistake 3 out of 5.");
+        gameProgress.add("The word: ****");
+        gameProgress.add("Guess a letter:");
+        gameProgress.add("Missed, mistake 4 out of 5.");
+        gameProgress.add("The word: ****");
+        gameProgress.add("Guess a letter:");
+        gameProgress.add("Lose!");
+        gameProgress.add("The word: ****");
+
+        List<String> input = new ArrayList<>();
+        input.add("w");
+        input.add("a");
+        input.add("c");
+        input.add("b");
+        input.add("o");
+
+        ByteArrayInputStream byteArrayInputStream =
+            new ByteArrayInputStream(String.join(System.lineSeparator(), input).getBytes());
+
+        String[] words = new String[] {"type"};
+        ConsoleHangman consoleHangman =
+            new ConsoleHangman(new Session(5, words));
+        consoleHangman.setScanner(byteArrayInputStream);
+        consoleHangman.run();
+        assertThat(consoleHangman.getGameProgress()).isEqualTo(gameProgress);
     }
 }

@@ -4,6 +4,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 class ConsoleHangman {
 
@@ -11,18 +13,19 @@ class ConsoleHangman {
     private static final String STOP_MESSAGE = "Exit";
     private static final String INVALID_MESSAGE = "Invalid value";
     private final static int MAX_ATTEMPT = 5;
-    private final List<String> GAME_PROGRESS = new ArrayList<String>();
+    private final List<String> gameProgress = new ArrayList<>();
+    private final static Logger LOGGER = LogManager.getLogger();
 
     private Session session;
     private Scanner scanner;
 
-    public static void main(String[] args) {
-        String[] words = new String[] {"text", "word", "type"};
-        ConsoleHangman consoleHangman =
-            new ConsoleHangman(new Session(5, words));
-        consoleHangman.setScanner();
-        consoleHangman.run();
-    }
+//    public static void main(String[] args) {
+//        String[] words = new String[] {"text", "word", "type"};
+//        ConsoleHangman consoleHangman =
+//            new ConsoleHangman(new Session(5, words));
+//        consoleHangman.setScanner();
+//        consoleHangman.run();
+//    }
 
     ConsoleHangman(Session session) {
         this.session = session;
@@ -31,8 +34,8 @@ class ConsoleHangman {
     public void run() {
 
         while (true) {
-            GAME_PROGRESS.add(GUESS_MESSAGE);
-            System.out.println(GUESS_MESSAGE);
+            gameProgress.add(GUESS_MESSAGE);
+            LOGGER.info(GUESS_MESSAGE);
             var input = scanner.nextLine();
 
             if (input.equals(STOP_MESSAGE)) {
@@ -40,8 +43,8 @@ class ConsoleHangman {
             }
 
             if (input.length() != 1) {
-                GAME_PROGRESS.add(INVALID_MESSAGE);
-                System.out.println(INVALID_MESSAGE);
+                gameProgress.add(INVALID_MESSAGE);
+                LOGGER.info(INVALID_MESSAGE);
                 continue;
             }
 
@@ -56,7 +59,7 @@ class ConsoleHangman {
     }
 
     public List<String> getGameProgress() {
-        return GAME_PROGRESS;
+        return gameProgress;
     }
 
     private GuessResult tryGuess(Session session, String input) {
@@ -64,10 +67,10 @@ class ConsoleHangman {
     }
 
     private void printState(GuessResult guess) {
-        GAME_PROGRESS.add(guess.message());
-        GAME_PROGRESS.add("The word: " + guess.word());
-        System.out.println(guess.message());
-        System.out.println("The word: " + guess.word());
+        gameProgress.add(guess.message());
+        gameProgress.add("The word: " + guess.word());
+        LOGGER.info(guess.message());
+        LOGGER.info("The word:" + guess.word());
     }
 
     public void setScanner(InputStream inputStream) {

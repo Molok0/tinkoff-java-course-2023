@@ -1,7 +1,7 @@
 package edu.gallows1.DictionaryModel;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.Random;
+import org.jetbrains.annotations.NotNull;
 
 public class GallowsDictionary implements Dictionary {
     @Override
