@@ -10,4 +10,16 @@ public final class Maze {
         this.width = width;
         this.grid = grid;
     }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public Cell[][] getGrid() {
+        return grid;
+    }
 }
