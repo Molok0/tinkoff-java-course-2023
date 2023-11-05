@@ -15,7 +15,7 @@ public class Task8Test {
         animals.add(new Animal("c", Animal.Type.BIRD, Animal.Sex.F, 25, 15, 5, false));
         animals.add(new Animal("dfff", Animal.Type.CAT, Animal.Sex.F, 25, 8, 24, false));
 
-        assertThat(Task8.heaviestAnimal(animals, 10)).isEqualTo(
+        assertThat(Tasks.heaviestAnimal(animals, 10)).isEqualTo(
             Optional.of(new Animal("dfff", Animal.Type.CAT, Animal.Sex.F, 25, 8, 24, false)));
     }
 }

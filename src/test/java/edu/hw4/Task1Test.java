@@ -21,6 +21,6 @@ public class Task1Test {
         sortAnimals.add(new Animal("b", Animal.Type.CAT, Animal.Sex.F, 25,3,100, false));
         sortAnimals.add(new Animal("a", Animal.Type.CAT, Animal.Sex.F, 25,4,100, false));
 
-        assertThat(Task1.sortedAnimalToHeight(animals)).isEqualTo(sortAnimals);
+        assertThat(Tasks.sortedAnimalToHeight(animals)).isEqualTo(sortAnimals);
     }
 }

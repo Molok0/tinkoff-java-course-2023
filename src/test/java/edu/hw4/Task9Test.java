@@ -15,6 +15,6 @@ public class Task9Test {
         animals.add(new Animal("c", Animal.Type.BIRD, Animal.Sex.F, 25, 15, 5, false));
         animals.add(new Animal("dfff", Animal.Type.CAT, Animal.Sex.F, 25, 8, 24, false));
 
-        assertThat(Task9.getCountFoot(animals)).isEqualTo(new Integer(14));
+        assertThat(Tasks.getCountFoot(animals)).isEqualTo(new Integer(14));
     }
 }

@@ -21,6 +21,6 @@ public class Task3Test {
         countAnimals.put(Animal.Type.BIRD,1);
         countAnimals.put(Animal.Type.DOG,1);
 
-        assertThat(Task3.getAnimalsCount(animals)).isEqualTo(countAnimals);
+        assertThat(Tasks.getAnimalsCount(animals)).isEqualTo(countAnimals);
     }
 }

@@ -16,6 +16,6 @@ public class Task4Test {
         animals.add(new Animal("c", Animal.Type.BIRD, Animal.Sex.F, 25, 3, 3, false));
         animals.add(new Animal("dfff", Animal.Type.CAT, Animal.Sex.F, 25, 1, 4, false));
 
-        assertThat(Task4.getLongestName(animals)).isEqualTo(new Animal("dfff", Animal.Type.CAT, Animal.Sex.F, 25, 1, 4, false));
+        assertThat(Tasks.getLongestName(animals)).isEqualTo(new Animal("dfff", Animal.Type.CAT, Animal.Sex.F, 25, 1, 4, false));
     }
 }

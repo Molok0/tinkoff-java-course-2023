@@ -19,6 +19,6 @@ public class Task2Test {
         sortAnimals.add(new Animal("c", Animal.Type.CAT, Animal.Sex.F, 25, 3, 3, false));
         sortAnimals.add(new Animal("b", Animal.Type.CAT, Animal.Sex.F, 25, 2, 2, false));
 
-        assertThat(Task2.sortedAnimalToWright(animals, 3)).isEqualTo(sortAnimals);
+        assertThat(Tasks.sortedAnimalToWright(animals, 3)).isEqualTo(sortAnimals);
     }
 }

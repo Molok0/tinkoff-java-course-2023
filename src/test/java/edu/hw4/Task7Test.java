@@ -17,6 +17,6 @@ public class Task7Test {
         animals.add(new Animal("c", Animal.Type.BIRD, Animal.Sex.F, 10, 3, 3, false));
         animals.add(new Animal("dfff", Animal.Type.CAT, Animal.Sex.F, 25, 1, 4, false));
 
-        assertThat(Task7.oldestAnimal(animals,3)).isEqualTo(new Animal("ba", Animal.Type.DOG, Animal.Sex.F, 7, 2, 2, false));
+        assertThat(Tasks.oldestAnimal(animals,3)).isEqualTo(new Animal("ba", Animal.Type.DOG, Animal.Sex.F, 7, 2, 2, false));
     }
 }

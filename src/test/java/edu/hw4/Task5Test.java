@@ -14,6 +14,6 @@ public class Task5Test {
         animals.add(new Animal("c", Animal.Type.BIRD, Animal.Sex.M, 25, 3, 3, false));
         animals.add(new Animal("dfff", Animal.Type.CAT, Animal.Sex.F, 25, 1, 4, false));
 
-        assertThat(Task5.getSex(animals)).isEqualTo(Animal.Sex.F);
+        assertThat(Tasks.getSex(animals)).isEqualTo(Animal.Sex.F);
     }
 }
