@@ -7,8 +7,12 @@ public enum ValidationError {
 
     private final String message;
 
-    private ValidationError(String message){
+    ValidationError(String message) {
         this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
 }

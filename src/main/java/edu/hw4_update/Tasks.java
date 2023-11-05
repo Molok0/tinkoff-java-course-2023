@@ -12,7 +12,8 @@ public final class Tasks {
 
     private static final int NECESSARY_GROWTH = 100;
 
-    private Tasks() {}
+    private Tasks() {
+    }
 
     public static List<Animal> sortedAnimalToHeight(List<Animal> animals) {
         return animals.stream().sorted(Comparator.comparing(Animal::height)).collect(Collectors.toList());
@@ -130,7 +131,11 @@ public final class Tasks {
         return errors;
     }
 
-//    public static Map<String, String> toPrettyPrint(Map<String, Set<ValidationError>> animals){
-//        return animals.entrySet().stream().collect(Collectors.groupingBy(Map.Entry::getKey, Collectors.flatMapping()));
-//    }
+    public static Map<String, String> toPrettyPrint(Map<String, Set<ValidationError>> animals) {
+        return animals.entrySet().stream().collect(Collectors.toMap(
+            Map.Entry::getKey,
+            error -> error.getValue().stream().map(ValidationError::getMessage).collect(Collectors.joining(","))
+        ));
+    }
+
 }
