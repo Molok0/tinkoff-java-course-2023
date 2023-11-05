@@ -14,6 +14,6 @@ public class Task12Test {
         animals.add(new Animal("c", Animal.Type.BIRD, Animal.Sex.F, 25, 15, 20, true));
         animals.add(new Animal("dfff", Animal.Type.CAT, Animal.Sex.F, 25, 143, 24, true));
 
-        assertThat(Tasks.WeightGreaterThanHeight(animals)).isEqualTo(1);
+        assertThat(Tasks.weightGreaterThanHeight(animals)).isEqualTo(1);
     }
 }

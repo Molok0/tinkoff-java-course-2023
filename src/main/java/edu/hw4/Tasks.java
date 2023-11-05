@@ -8,7 +8,12 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Tasks {
+public final class Tasks {
+
+    private static final int NECESSARY_GROWTH = 100;
+
+    private Tasks() {}
+
     public static List<Animal> sortedAnimalToHeight(List<Animal> animals) {
         return animals.stream().sorted(Comparator.comparing(Animal::height)).collect(Collectors.toList());
     }
@@ -35,7 +40,7 @@ public class Tasks {
             .orElse(null);
     }
 
-    public static Map<Animal.Type, Animal> HeaviestAnimalEachSpecies(List<Animal> animals) {
+    public static Map<Animal.Type, Animal> heaviestAnimalEachSpecies(List<Animal> animals) {
         return animals.stream()
             .collect(Collectors.groupingBy(Animal::type, Collectors.maxBy(Comparator.comparingInt(Animal::weight))))
             .entrySet().stream()
@@ -63,10 +68,10 @@ public class Tasks {
 
     public static List<Animal> animalsThatCanBite(List<Animal> animals) {
         return animals.stream()
-            .filter(animal -> animal.height() > 100 && animal.bites() == true).toList();
+            .filter(animal -> animal.height() > NECESSARY_GROWTH && animal.bites()).toList();
     }
 
-    public static Integer WeightGreaterThanHeight(List<Animal> animals) {
+    public static Integer weightGreaterThanHeight(List<Animal> animals) {
         return animals.stream()
             .filter(animal -> animal.height() < animal.weight()).toList().size();
     }
