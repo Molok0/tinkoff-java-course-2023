@@ -129,4 +129,8 @@ public final class Tasks {
         }
         return errors;
     }
+
+//    public static Map<String, String> toPrettyPrint(Map<String, Set<ValidationError>> animals){
+//        return animals.entrySet().stream().collect(Collectors.groupingBy(Map.Entry::getKey, Collectors.flatMapping()));
+//    }
 }

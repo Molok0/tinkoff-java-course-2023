@@ -21,6 +21,6 @@ public class Task6Test {
         typeAnimalMap.put(Animal.Type.CAT, new Animal("dfff", Animal.Type.CAT, Animal.Sex.F, 25, 1, 4, false));
         typeAnimalMap.put(Animal.Type.DOG, new Animal("ba", Animal.Type.DOG, Animal.Sex.F, 25, 2, 54, false));
         typeAnimalMap.put(Animal.Type.BIRD,new Animal("c", Animal.Type.BIRD, Animal.Sex.F, 25, 3, 3, false));
-        assertThat(Tasks.HeaviestAnimalEachSpecies(animals)).isEqualTo(typeAnimalMap);
+        assertThat(Tasks.heaviestAnimalEachSpecies(animals)).isEqualTo(typeAnimalMap);
     }
 }
