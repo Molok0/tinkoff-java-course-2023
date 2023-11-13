@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class Task7 {
 
     public static boolean leastThreeCharactersAndThirdIsZero(String input) {
-        return Pattern.compile("^[0|1]{2}0").matcher(input).matches();
+        return Pattern.compile("^[0|1]{2}0$").matcher(input).matches();
     }
 
     public static boolean symbolBeginningEqualsEnd(String input) {

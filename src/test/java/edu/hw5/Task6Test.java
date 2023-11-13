@@ -8,8 +8,9 @@ public class Task6Test {
     void checkPassword(){
         assertThat(Task6.stringIsSubsequenceOfString("abc","achfdbaabgabcaabg")).isEqualTo(true);
     }
+
     @Test
-    void checkPasswordFalse(){
-        assertThat(Task6.stringIsSubsequenceOfString("!abc","achfdbaabgabcaabg")).isEqualTo(false);
+    void checkPasswordFalse() {
+        assertThat(Task6.stringIsSubsequenceOfString("!abc", "achfdbaabgabcaabg")).isEqualTo(false);
     }
 }

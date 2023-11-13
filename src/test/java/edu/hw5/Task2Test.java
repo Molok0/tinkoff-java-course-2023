@@ -14,11 +14,11 @@ public class Task2Test {
 
     @Test
     void getNextFridays() {
-        assertThat(Task2.getNextFridays(LocalDate.of(2024,9,13))).isEqualTo("2024-12-13");
+        assertThat(Task2.getNextFridays(LocalDate.of(2024, 9, 13))).isEqualTo("2024-12-13");
     }
 
     @Test
     void getAllFridays2() {
-        assertThat(Task2.getAllFridays(2024 )).isEqualTo(List.of("2024-09-13", "2024-12-13"));
+        assertThat(Task2.getAllFridays(2024)).isEqualTo(List.of("2024-09-13", "2024-12-13"));
     }
 }
