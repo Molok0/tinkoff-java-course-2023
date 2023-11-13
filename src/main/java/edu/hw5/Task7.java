@@ -9,7 +9,7 @@ public class Task7 {
     }
 
     public static boolean symbolBeginningEqualsEnd(String input) {
-        return Pattern.compile("^(0|1).*\1$").matcher(input).matches();
+        return Pattern.compile("^(0|1).*\\1$").matcher(input).matches();
     }
 
     /*

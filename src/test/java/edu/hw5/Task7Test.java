@@ -5,7 +5,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Task7Test {
     @Test
-    void leastThreeCharactersAndThirdIsZero(){
+    void lengthCheck(){
         assertThat(Task7.lengthCheck("010")).isEqualTo(true);
     }
 
@@ -14,7 +14,7 @@ public class Task7Test {
         assertThat(Task7.symbolBeginningEqualsEnd("010")).isEqualTo(true);
     }
     @Test
-    void lengthCheck(){
+    void leastThreeCharactersAndThirdIsZero(){
         assertThat(Task7.leastThreeCharactersAndThirdIsZero("0010")).isEqualTo(true);
     }
 }

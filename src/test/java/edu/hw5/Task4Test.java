@@ -8,4 +8,9 @@ public class Task4Test {
     void checkPassword() {
         assertThat(Task4.checkPassword("Passwo~rd")).isEqualTo(true);
     }
+
+    @Test
+    void checkPasswordFalse() {
+        assertThat(Task4.checkPassword("@Ab~")).isEqualTo(false);
+    }
 }
