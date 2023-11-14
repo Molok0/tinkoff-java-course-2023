@@ -22,7 +22,7 @@ public final class Task1 {
             LocalDateTime localDateTime = LocalDateTime.parse(splitTime[0], formatter);
 
             Duration duration = Duration.between(LocalDateTime.parse(splitTime[1], formatter), localDateTime);
-            sumTime += duration.getSeconds();
+            sumTime += Math.abs(duration.getSeconds());
             count += 1;
         }
         Long secondsAverageValue = sumTime / count;
