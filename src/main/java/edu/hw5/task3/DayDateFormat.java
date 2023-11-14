@@ -26,19 +26,19 @@ public class DayDateFormat extends StrongDateFormat {
     private static final String YEAR_LATER = "year later";
     private static final String YEAR_AGO = "year ago";
 
-    private static final Pattern timeAgo = Pattern.compile("\\d+ (day(s)?|week(s)?|month(s)?|year(s)?) ago");
-    private static final Pattern comingSoon =
+    private static final Pattern TIME_AGO = Pattern.compile("\\d+ (day(s)?|week(s)?|month(s)?|year(s)?) ago");
+    private static final Pattern COMING_SOON =
         Pattern.compile("(tomorrow|today|yesterday|day before yesterday|after tomorrow)");
-    private static final Pattern timeLater = Pattern.compile("\\d+ (day(s)?|week(s)?|month(s)?|year(s)?) later");
+    private static final Pattern TIME_LATER = Pattern.compile("\\d+ (day(s)?|week(s)?|month(s)?|year(s)?) later");
 
     @Override
     public Optional<LocalDate> parseDate(String input) {
         LocalDate time = null;
-        if (timeAgo.matcher(input).matches()) {
+        if (TIME_AGO.matcher(input).matches()) {
             time = getAgoTime(input);
-        } else if (comingSoon.matcher(input).matches()) {
+        } else if (COMING_SOON.matcher(input).matches()) {
             time = getComingSoon(input);
-        } else if (timeLater.matcher(input).matches()) {
+        } else if (TIME_LATER.matcher(input).matches()) {
             time = getLaterTime(input);
         }
 

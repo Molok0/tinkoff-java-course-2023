@@ -5,8 +5,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class Task1 {
+public final class Task1 {
+    private static final int TO_HOURS = 3600;
+    private static final int TO_MINUTES = 60;
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm");
+
+    private Task1() {
+
+    }
 
     public static String averageTimeSession(List<String> times) {
         Long sumTime = Long.valueOf(0);
@@ -21,8 +27,8 @@ public class Task1 {
         }
         Long secondsAverageValue = sumTime / count;
 
-        var h = (int) (secondsAverageValue / 3600);
-        var m = (int) (secondsAverageValue % 3600 / 60);
+        var h = (int) (secondsAverageValue / TO_HOURS);
+        var m = (int) (secondsAverageValue % TO_HOURS / TO_MINUTES);
 
         return String.format("%dч %dм", h, m);
     }

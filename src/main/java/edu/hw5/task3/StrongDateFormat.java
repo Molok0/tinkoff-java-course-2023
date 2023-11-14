@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 public abstract class StrongDateFormat {
-    StrongDateFormat NextStrongDateFormat;
+    StrongDateFormat nextStrongDateFormat;
 
     public StrongDateFormat() {
 
@@ -13,10 +13,10 @@ public abstract class StrongDateFormat {
     public abstract Optional<LocalDate> parseDate(String input);
 
     public StrongDateFormat getNextStrongDateFormat() {
-        return NextStrongDateFormat;
+        return nextStrongDateFormat;
     }
 
     public void setNextStrongDateFormat(StrongDateFormat nextStrongDateFormat) {
-        NextStrongDateFormat = nextStrongDateFormat;
+        this.nextStrongDateFormat = nextStrongDateFormat;
     }
 }
