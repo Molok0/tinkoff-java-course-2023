@@ -64,6 +64,7 @@ public class DayDateFormat extends StrongDateFormat {
             case MONTHS_LATER, MONTH_LATER -> LocalDate.now().plusMonths(count);
             case YEAR_LATER, YEARS_LATER -> LocalDate.now().plusYears(count);
             case DAY_LATER, DAYS_LATER -> LocalDate.now().plusDays(count);
+            default -> null;
         };
     }
 
@@ -72,6 +73,7 @@ public class DayDateFormat extends StrongDateFormat {
             case TOMORROW -> LocalDate.now().plusDays(1);
             case TODAY -> LocalDate.now();
             case YESTERDAY -> LocalDate.now().minusDays(1);
+            default -> null;
         };
     }
 
@@ -88,6 +90,7 @@ public class DayDateFormat extends StrongDateFormat {
             case MONTHS_AGO, MONTH_AGO -> LocalDate.now().minusMonths(count);
             case YEAR_AGO, YEARS_AGO -> LocalDate.now().minusYears(count);
             case DAY_AGO, DAYS_AGO -> LocalDate.now().minusDays(count);
+            default -> null;
         };
     }
 }
