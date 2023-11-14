@@ -31,13 +31,23 @@ public class Task3Test {
     void parseDateNonStandard2() {
         assertThat(Task3.parseDate("1/3/1976")).isEqualTo(Optional.of(LocalDate.of(1976, 3, 1)));
     }
+
     @Test
     void parseDateStandard() {
         assertThat(Task3.parseDate("2020-10-10")).isEqualTo(Optional.of(LocalDate.of(2020, 10, 10)));
     }
+
     @Test
     void parseDateEmpty() {
         assertThat(Task3.parseDate("ago")).isEqualTo(Optional.empty());
     }
 
+    @Test
+    void parseDateAgo() {
+        assertThat(Task3.parseDate("3 days ago")).isEqualTo(Optional.of(LocalDate.now().minusDays(3)));
+    }
+    @Test
+    void parseDateAgoLater() {
+        assertThat(Task3.parseDate("3 years later")).isEqualTo(Optional.of(LocalDate.now().plusYears(3)));
+    }
 }

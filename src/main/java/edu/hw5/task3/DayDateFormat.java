@@ -57,7 +57,7 @@ public class DayDateFormat extends StrongDateFormat {
         stringBuilder.append(parseInput[1]);
         stringBuilder.append(" ");
         stringBuilder.append(parseInput[2]);
-        var count = Integer.getInteger(parseInput[0]);
+        var count = Integer.parseInt(parseInput[0]);
 
         return switch (stringBuilder.toString()) {
             case WEEK_LATER, WEEKS_LATER -> LocalDate.now().plusWeeks(count);
@@ -83,7 +83,7 @@ public class DayDateFormat extends StrongDateFormat {
         stringBuilder.append(parseInput[1]);
         stringBuilder.append(" ");
         stringBuilder.append(parseInput[2]);
-        var count = Integer.getInteger(parseInput[0]);
+        var count = Integer.parseInt(parseInput[0]);
 
         return switch (stringBuilder.toString()) {
             case WEEK_AGO, WEEKS_AGO -> LocalDate.now().minusWeeks(count);
