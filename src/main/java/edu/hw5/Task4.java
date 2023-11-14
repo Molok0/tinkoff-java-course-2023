@@ -8,9 +8,9 @@ public final class Task4 {
     }
 
     public static boolean checkPassword(String password) {
-        var pattern = Pattern.compile(".*[~!@#$%^&*|].*");
+        var pattern = Pattern.compile("[~!@#$%^&*|]");
         Matcher matcher = pattern.matcher(password);
-        return matcher.matches();
+        return matcher.find();
     }
 
 }
