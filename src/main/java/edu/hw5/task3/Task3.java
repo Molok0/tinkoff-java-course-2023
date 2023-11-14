@@ -3,8 +3,11 @@ package edu.hw5.task3;
 import java.time.LocalDate;
 import java.util.Optional;
 
-public class Task3 {
-    public Optional<LocalDate> parseDate(String input) {
+public final class Task3 {
+    private Task3() {
+    }
+
+    public static Optional<LocalDate> parseDate(String input) {
         StrongDateFormat daysFormatter = new DayDateFormat();
         StrongDateFormat nonStandard = new NotStandardDateFormat();
         StrongDateFormat standard = new StandardDateFormat();
@@ -14,4 +17,5 @@ public class Task3 {
         standard.setNextStrongDateFormat(null);
         return daysFormatter.parseDate(input);
     }
+
 }

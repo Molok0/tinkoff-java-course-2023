@@ -12,7 +12,12 @@ public class NotStandardDateFormat extends StrongDateFormat {
         DateTimeFormatter.ofPattern("yyyy-M-d"),
         DateTimeFormatter.ofPattern("yyyy-M-dd"),
         DateTimeFormatter.ofPattern("dd-MM-yyyy"),
-        DateTimeFormatter.ofPattern("dd-MM-yy")
+        DateTimeFormatter.ofPattern("dd-MM-yy"),
+        DateTimeFormatter.ofPattern("yyyy/MM/d"),
+        DateTimeFormatter.ofPattern("yyyy/M/d"),
+        DateTimeFormatter.ofPattern("yyyy/M/dd"),
+        DateTimeFormatter.ofPattern("dd/MM/yyyy"),
+        DateTimeFormatter.ofPattern("dd/MM/yy")
     );
 
     @Override
@@ -21,12 +26,15 @@ public class NotStandardDateFormat extends StrongDateFormat {
         for (DateTimeFormatter formatter : listOfFormat) {
             try {
                 dateFormatter = LocalDate.parse(input, formatter);
+                if (dateFormatter != null) {
+                    break;
+                }
             } catch (DateTimeException e) {
 
             }
         }
         if (dateFormatter != null) {
-            Optional.of(dateFormatter);
+            return Optional.of(dateFormatter);
         }
         if (this.getNextStrongDateFormat() != null) {
             return this.getNextStrongDateFormat().parseDate(input);
