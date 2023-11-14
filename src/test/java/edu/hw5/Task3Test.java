@@ -26,4 +26,18 @@ public class Task3Test {
     void parseDateNonStandard1() {
         assertThat(Task3.parseDate("2020-12-2")).isEqualTo(Optional.of(LocalDate.of(2020, 12, 2)));
     }
+
+    @Test
+    void parseDateNonStandard2() {
+        assertThat(Task3.parseDate("1/3/1976")).isEqualTo(Optional.of(LocalDate.of(1976, 3, 1)));
+    }
+    @Test
+    void parseDateStandard() {
+        assertThat(Task3.parseDate("2020-10-10")).isEqualTo(Optional.of(LocalDate.of(2020, 10, 10)));
+    }
+    @Test
+    void parseDateEmpty() {
+        assertThat(Task3.parseDate("ago")).isEqualTo(Optional.empty());
+    }
+
 }
