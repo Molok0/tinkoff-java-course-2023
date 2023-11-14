@@ -1,23 +1,37 @@
 package edu.hw5.task3;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
 public class NotStandardDateFormat extends StrongDateFormat {
-    private static final SimpleDateFormat a = new SimpleDateFormat("yyyy-MM-d");
-    List<SimpleDateFormat> list = List.of(
-        new SimpleDateFormat("yyyy-MM-d"),
-        new SimpleDateFormat("yyyy-M-d"),
-        new SimpleDateFormat("yyyy-M-dd"),
-        new SimpleDateFormat("dd-MM-yyyy"),
-        new SimpleDateFormat("dd-MM-yy")
+    List<DateTimeFormatter> listOfFormat = List.of(
+        DateTimeFormatter.ofPattern("yyyy-MM-d"),
+        DateTimeFormatter.ofPattern("yyyy-M-d"),
+        DateTimeFormatter.ofPattern("yyyy-M-dd"),
+        DateTimeFormatter.ofPattern("dd-MM-yyyy"),
+        DateTimeFormatter.ofPattern("dd-MM-yy")
     );
 
     @Override
-    public Optional<LocalDate> parseDate(String string) {
+    public Optional<LocalDate> parseDate(String input) {
+        LocalDate dateFormatter = null;
+        for (DateTimeFormatter formatter : listOfFormat) {
+            try {
+                dateFormatter = LocalDate.parse(input, formatter);
+            } catch (DateTimeException e) {
+
+            }
+        }
+        if (dateFormatter != null) {
+            Optional.of(dateFormatter);
+        }
+        if (this.getNextStrongDateFormat() != null) {
+            return this.getNextStrongDateFormat().parseDate(input);
+
+        }
         return Optional.empty();
     }
 }

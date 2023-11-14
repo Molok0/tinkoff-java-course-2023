@@ -23,6 +23,7 @@ public class Task5Test {
     void isRussianLicensePlate4() {
         assertThat(Task5.isRussianLicensePlate("А123ВГ77")).isEqualTo(false);
     }
+
     @Test
     void isRussianLicensePlate5() {
         assertThat(Task5.isRussianLicensePlate("А123ВЕ7777")).isEqualTo(false);

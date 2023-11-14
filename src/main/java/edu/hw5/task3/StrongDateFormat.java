@@ -3,13 +3,14 @@ package edu.hw5.task3;
 import java.time.LocalDate;
 import java.util.Optional;
 
-public abstract class StrongDateFormat{
+public abstract class StrongDateFormat {
     StrongDateFormat NextStrongDateFormat;
 
-    public StrongDateFormat(){
+    public StrongDateFormat() {
 
     }
-    public abstract Optional<LocalDate> parseDate(String string);
+
+    public abstract Optional<LocalDate> parseDate(String input);
 
     public StrongDateFormat getNextStrongDateFormat() {
         return NextStrongDateFormat;
