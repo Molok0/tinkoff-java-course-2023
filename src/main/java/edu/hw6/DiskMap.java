@@ -36,6 +36,7 @@ public class DiskMap implements Map<String, String>, Serializable {
                 StandardOpenOption.TRUNCATE_EXISTING
             );
             ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
+
             for (var entry : data.entrySet()) {
                 var tmp = entry.getKey() + ":" + entry.getValue() + System.lineSeparator();
                 buffer.put(tmp.getBytes());
