@@ -22,7 +22,7 @@ public final class Task2 {
                     while (true) {
                         newFilePath =
                             Path.of(
-                                path.getParent() + "\\" + fileName[0] + String.format(" — копия (%d)", count)
+                                path.getParent() + "\\" + fileName[0] + String.format(" — копия (%d).", count)
                                     + fileName[1]);
                         count += 1;
                         if (!Files.exists(newFilePath)) {
