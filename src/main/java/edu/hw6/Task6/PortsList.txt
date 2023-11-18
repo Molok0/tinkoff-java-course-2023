@@ -1,0 +1,38 @@
+0:TCP:Reserved
+1:TCP:TCPMUX
+2:UDP:COMPRESSNET
+3:UDP:COMPRESSNET
+5:TCP:RJE
+7:TCP:ECHO
+9:UDP:DISCARD
+11:TCP:SYSTAT
+13:TCP:DAYTIME
+15:TCP:NETSTAT
+17:UDP:Quote of the Day
+18:TCP:Message Send Protocol
+19:TCP:Character Generator
+20:TCP:FTP-DATA
+21:TCP:FTP
+22:TCP:Secure SHell
+23:TCP:Telnet
+24:TCP:PRIV-MAIL
+25:TCP:Simple Mail Transfer Protocol
+26:UDP:RSFTP
+27:TCP:NSW User System FE
+29:TCP:	MSG-ICP
+31:TCP:MSG-AUTH
+33:TCP:Display Support Protocol
+35:UDP:PRIV-PRINT
+37:TCP:TIME
+38:TCP:Route Access Protocol
+39:TCP:Resource Location Protocol
+41:TCP:Graphics
+42:TCP:NAMESERVER
+43:TCP:WHOIS
+44:UDP:Message Processing Module, Flags
+45:TCP:Message Processing Module, receive
+46:TCP:Message Processing Module, send
+47:TCP:NI-FTP
+48:TCP:Digital Audit Daemon
+49:TCP:TACACS
+50:TCP:RE-MAIL-CK
