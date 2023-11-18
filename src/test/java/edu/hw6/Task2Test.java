@@ -26,6 +26,7 @@ class Task2Test {
         Path fileCopy = Path.of(String.valueOf(path.resolve(FILE_COPY)));
         assertThat(assertThat(Files.exists(fileCopy)).isEqualTo(true));
     }
+
     @Test
     void cloneFile2(@TempDir Path path) {
         Path file = Path.of(String.valueOf(path.resolve(FILE)));

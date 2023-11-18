@@ -48,7 +48,6 @@ public final class Task6 {
     private Task6() {
     }
 
-
     public static void scanPorts() {
         System.out.format(FORMAT_PATTERN, PROTOCOL_PRINT, PORT_PRINT, SERVICE_PRINT);
         for (int portNumber = START_PORT; portNumber <= END_PORT + 1; portNumber++) {
