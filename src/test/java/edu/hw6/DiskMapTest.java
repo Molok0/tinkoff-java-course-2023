@@ -59,6 +59,20 @@ class DiskMapTest {
         diskMap.remove("1");
         assertThat(diskMap.readFile()).isNotEqualTo(diskMap.getData().toString());
     }
+    @Test
+    void diskMapIsEmpty(){
+        DiskMap diskMap = new DiskMap(FILE.getPath());
+        assertThat(diskMap.isEmpty()).isEqualTo(true);
+    }
+    @Test
+    void diskMapSize(){
+        DiskMap diskMap = new DiskMap(FILE.getPath());
+        diskMap.put("1", "A");
+        diskMap.put("2", "B");
+        diskMap.put("3", "C");
+        diskMap.save();
+        assertThat(diskMap.size()).isEqualTo(3);
+    }
 
     private static String read(String filePath){
         try {
