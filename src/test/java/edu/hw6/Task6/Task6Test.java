@@ -17,7 +17,7 @@ class Task6Test {
             String.format(FORMAT_PATTERN, "TCP", "1", "TCPMUX"),
             String.format(FORMAT_PATTERN, "UDP", "2", "COMPRESSNET"),
             String.format(FORMAT_PATTERN, "UDP", "3", "COMPRESSNET"),
-            String.format(FORMAT_PATTERN, "", "4", ""),
+            String.format(FORMAT_PATTERN, "", "4", "Port Open"),
             String.format(FORMAT_PATTERN, "TCP", "5", "RJE")
         ));
     }
