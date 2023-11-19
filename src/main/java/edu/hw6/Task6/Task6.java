@@ -20,7 +20,7 @@ public final class Task6 {
     private static final String PORT_PRINT = "Port";
     private static final String PORT_OPEN = "Port open";
     private static final String PATH_TO_FILES_WITH_PORTS =
-        "src\\main\\java\\edu\\hw6\\Task6\\PortsList.txt";
+        "src\main\java\edu\hw6\Task6\PortsList.txt";
     private static final String FORMAT_PATTERN = "%-15s%-15s%-15s%n";
     private static final Map<Integer, List<String>> KNOWN_PORTS = getKnownPorts();
 
