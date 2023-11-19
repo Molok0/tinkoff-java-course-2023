@@ -18,8 +18,7 @@ public final class Task6 {
     private static final String PROTOCOL_PRINT = "Protocol";
     private static final String SERVICE_PRINT = "Service";
     private static final String PORT_PRINT = "Port";
-    private static final String TCP_PRINT = "TCP";
-    private static final String UDP_PRINT = "UDP";
+    private static final String PORT_OPEN = "Port open";
     private static final String PATH_TO_FILES_WITH_PORTS =
         "C:\\Users\\dopro\\IdeaProjects\\java-course-2023\\src\\main\\java\\edu\\hw6\\Task6\\PortsList.txt";
     private static final String FORMAT_PATTERN = "%-15s%-15s%-15s%n";
@@ -55,21 +54,17 @@ public final class Task6 {
     private Task6() {
     }
 
-    public static void main(String[] args) {
-        scanPorts();
-    }
-
     public static void scanPorts() {
         table.add(String.format(FORMAT_PATTERN, PROTOCOL_PRINT, PORT_PRINT, SERVICE_PRINT));
         System.out.format(FORMAT_PATTERN, PROTOCOL_PRINT, PORT_PRINT, SERVICE_PRINT);
         for (int portNumber = START_PORT; portNumber <= END_PORT; portNumber++) {
             try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
-                table.add(String.format(FORMAT_PATTERN, "", portNumber, "Port open"));
-                System.out.format(FORMAT_PATTERN, "", portNumber, "Port open");
+                table.add(String.format(FORMAT_PATTERN, "", portNumber, PORT_OPEN));
+                System.out.format(FORMAT_PATTERN, "", portNumber, PORT_OPEN);
             } catch (IOException e) {
                 try (DatagramSocket datagramSocket = new DatagramSocket(portNumber)) {
-                    table.add(String.format(FORMAT_PATTERN, "", portNumber, "Port open"));
-                    System.out.format(FORMAT_PATTERN, "", portNumber, "Port open");
+                    table.add(String.format(FORMAT_PATTERN, "", portNumber, PORT_OPEN));
+                    System.out.format(FORMAT_PATTERN, "", portNumber, PORT_OPEN);
                 } catch (SocketException ex) {
                     if (KNOWN_PORTS.containsKey(portNumber)) {
                         table.add(String.format(FORMAT_PATTERN, KNOWN_PORTS.get(portNumber).get(0),
