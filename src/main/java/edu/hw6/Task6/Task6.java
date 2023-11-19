@@ -6,6 +6,7 @@ import java.net.ServerSocket;
 import java.net.SocketException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,7 @@ public final class Task6 {
     private static final String PORT_PRINT = "Port";
     private static final String PORT_OPEN = "Port open";
     private static final String PATH_TO_FILES_WITH_PORTS =
-        "src\main\java\edu\hw6\Task6\PortsList.txt";
+        "src\\main\\java\\edu\\hw6\\Task6\\PortsList.txt";
     private static final String FORMAT_PATTERN = "%-15s%-15s%-15s%n";
     private static final Map<Integer, List<String>> KNOWN_PORTS = getKnownPorts();
 
@@ -33,7 +34,7 @@ public final class Task6 {
     private static Map<Integer, List<String>> getKnownPorts() {
         Map<Integer, List<String>> knownPorts = new HashMap<>();
         Path path =
-            Path.of(PATH_TO_FILES_WITH_PORTS);
+            Paths.get(String.valueOf(Paths.get("").toAbsolutePath()), PATH_TO_FILES_WITH_PORTS);
 
         try {
             List<String> lines = Files.readAllLines(path);
