@@ -10,26 +10,27 @@ import java.nio.channels.FileChannel;
 import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 class DiskMapTest {
 
     private static final File FILE = new File("test1.txt");
 
     @BeforeAll
-    static void createFile()  {
+    static void createFile() {
         try {
-            var file = FILE.createNewFile();
-        }catch (IOException e){
+            FILE.createNewFile();
+        } catch (IOException e) {
 
         }
     }
 
     @AfterAll
-    static void deleteFile(){
+    static void deleteFile() {
         FILE.delete();
     }
 
     @Test
-    void diskMapPutTest(){
+    void diskMapPutTest() {
         DiskMap diskMap = new DiskMap(FILE.getPath());
         diskMap.put("1", "A");
         diskMap.put("2", "B");
@@ -39,7 +40,7 @@ class DiskMapTest {
     }
 
     @Test
-    void diskMapRemoveTest(){
+    void diskMapRemoveTest() {
         DiskMap diskMap = new DiskMap(FILE.getPath());
         diskMap.put("1", "A");
         diskMap.put("2", "B");
@@ -49,8 +50,9 @@ class DiskMapTest {
         diskMap.save();
         assertThat(diskMap.readFile()).isEqualTo(read(FILE.getPath()));
     }
+
     @Test
-    void diskMapRemoveTestFalse(){
+    void diskMapRemoveTestFalse() {
         DiskMap diskMap = new DiskMap(FILE.getPath());
         diskMap.put("1", "A");
         diskMap.put("2", "B");
@@ -59,13 +61,15 @@ class DiskMapTest {
         diskMap.remove("1");
         assertThat(diskMap.readFile()).isNotEqualTo(diskMap.getData().toString());
     }
+
     @Test
-    void diskMapIsEmpty(){
+    void diskMapIsEmpty() {
         DiskMap diskMap = new DiskMap(FILE.getPath());
         assertThat(diskMap.isEmpty()).isEqualTo(true);
     }
+
     @Test
-    void diskMapSize(){
+    void diskMapSize() {
         DiskMap diskMap = new DiskMap(FILE.getPath());
         diskMap.put("1", "A");
         diskMap.put("2", "B");
@@ -74,7 +78,7 @@ class DiskMapTest {
         assertThat(diskMap.size()).isEqualTo(3);
     }
 
-    private static String read(String filePath){
+    private static String read(String filePath) {
         try {
             FileChannel inChannel = FileChannel.open(Path.of(filePath));
             ByteBuffer buffer = ByteBuffer.allocate((int) inChannel.size());
