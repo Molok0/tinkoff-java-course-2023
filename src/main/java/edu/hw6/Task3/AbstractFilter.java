@@ -1,12 +1,10 @@
 package edu.hw6.Task3;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public interface AbstractFilter extends DirectoryStream.Filter<Path> {
 
@@ -18,38 +16,43 @@ public interface AbstractFilter extends DirectoryStream.Filter<Path> {
         return Files.isWritable(path) ? path::equals : null;
     }
 
+    static AbstractFilter regularFile(Path path) {
+        return Files.isRegularFile(path) ? path::equals : null;
+    }
+
     static AbstractFilter largerThan(int size) {
         return path -> Files.size(path) >= size;
     }
 
     static AbstractFilter magicNumber(byte... elements) {
         return path -> {
-            int sizeFile = elements.length;
-            try (FileInputStream inputStream = new FileInputStream(path.toFile())) {
-                var a = inputStream.readNBytes(sizeFile);
-                if (elements.equals(a)) {
+            try {
+                byte[] bytes = Files.readAllBytes(path);
+                if (bytes.length >= elements.length) {
+                    for (int i = 0; i < elements.length; i++) {
+                        if (bytes[i] != elements[i]) {
+                            return false;
+                        }
+                    }
                     return true;
                 }
-                return false;
             } catch (IOException e) {
                 return false;
             }
+            return false;
         };
     }
 
     static AbstractFilter globMatches(String glob) {
-        return path -> path.toString().matches(glob);
+        return path -> FileSystems.getDefault().getPathMatcher("glob:" + glob).matches(path.getFileName());
     }
 
     static AbstractFilter regexContains(String regex) {
-        return path -> {
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(path.toString());
-            return matcher.find();
-        };
+        return path ->
+            path.getFileName().toString().matches(".*" + regex + ".*");
     }
 
-    default boolean accept(AbstractFilter entry) throws IOException {
-        return false;
+    default AbstractFilter and(AbstractFilter other) {
+        return path -> this.accept(path) && other.accept(path);
     }
 }
