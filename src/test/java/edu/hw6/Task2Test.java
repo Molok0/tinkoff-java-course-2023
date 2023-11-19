@@ -19,7 +19,7 @@ class Task2Test {
     void cloneFile() {
         Path file = Path.of(String.valueOf(path.resolve(FILE)));
         Task2.cloneFile(file);
-        assertThat(assertThat(Files.exists(file)).isEqualTo(true));
+        assertThat(Files.exists(file)).isEqualTo(true);
     }
 
     @Test
@@ -28,7 +28,7 @@ class Task2Test {
         Task2.cloneFile(file);
         Task2.cloneFile(file);
         Path fileCopy = Path.of(String.valueOf(path.resolve(FILE_COPY)));
-        assertThat(assertThat(Files.exists(fileCopy)).isEqualTo(true));
+        assertThat(Files.exists(fileCopy)).isEqualTo(true);
     }
 
     @Test
@@ -38,7 +38,7 @@ class Task2Test {
         Task2.cloneFile(file);
         Task2.cloneFile(file);
         Path fileCopy = Path.of(String.valueOf(path.resolve(FILE_COPY2)));
-        assertThat(assertThat(Files.exists(fileCopy)).isEqualTo(true));
+        assertThat(Files.exists(fileCopy)).isEqualTo(true);
     }
 
 }
