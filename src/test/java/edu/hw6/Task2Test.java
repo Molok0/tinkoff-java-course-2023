@@ -6,6 +6,7 @@ import org.junit.jupiter.api.io.TempDir;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.io.CleanupMode.ON_SUCCESS;
 
 class Task2Test {
 
@@ -14,14 +15,14 @@ class Task2Test {
     private static final String FILE_COPY2 = "Tinkoff Bank Biggest Secret — копия (2).txt";
 
     @Test
-    void cloneFile(@TempDir Path path) {
+    void cloneFile(@TempDir(cleanup = ON_SUCCESS) Path path) {
         Path file = Path.of(String.valueOf(path.resolve(FILE)));
         Task2.cloneFile(file);
         assertThat(Files.exists(file)).isEqualTo(true);
     }
 
     @Test
-    void cloneFile1(@TempDir Path path) {
+    void cloneFile1(@TempDir(cleanup = ON_SUCCESS) Path path) {
         Path file = Path.of(String.valueOf(path.resolve(FILE)));
         Task2.cloneFile(file);
         Task2.cloneFile(file);
@@ -30,7 +31,7 @@ class Task2Test {
     }
 
     @Test
-    void cloneFile2(@TempDir Path path) {
+    void cloneFile2(@TempDir(cleanup = ON_SUCCESS) Path path) {
         Path file = Path.of(String.valueOf(path.resolve(FILE)));
         Task2.cloneFile(file);
         Task2.cloneFile(file);
