@@ -36,3 +36,9 @@
 48:TCP:Digital Audit Daemon
 49:TCP:TACACS
 50:TCP:RE-MAIL-CK
+135:TCP:EPMAP
+137:UDP:Служба имен NetBIOS
+138:UDP:Служба датаграмм NetBIOS
+139:TCP:Служба сеансов NetBIOS
+445:TCP:Microsoft-DS Active Directory
+843:TCP:Adobe Flash

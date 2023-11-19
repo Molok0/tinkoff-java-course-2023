@@ -6,6 +6,7 @@ import java.net.ServerSocket;
 import java.net.SocketException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.Map;
 public final class Task6 {
 
     private static final int START_PORT = 0;
-    private static final int END_PORT = 70;
+    private static final int END_PORT = 5;
     private static final String PROTOCOL_PRINT = "Protocol";
     private static final String SERVICE_PRINT = "Service";
     private static final String PORT_PRINT = "Port";
@@ -23,6 +24,12 @@ public final class Task6 {
         "C:\\Users\\dopro\\IdeaProjects\\java-course-2023\\src\\main\\java\\edu\\hw6\\Task6\\PortsList.txt";
     private static final String FORMAT_PATTERN = "%-15s%-15s%-15s%n";
     private static final Map<Integer, List<String>> KNOWN_PORTS = getKnownPorts();
+
+    public static List<String> getTable() {
+        return table;
+    }
+
+    private static List<String> table = new ArrayList<>();
 
     private static Map<Integer, List<String>> getKnownPorts() {
         Map<Integer, List<String>> knownPorts = new HashMap<>();
@@ -48,23 +55,33 @@ public final class Task6 {
     private Task6() {
     }
 
+    public static void main(String[] args) {
+        scanPorts();
+    }
+
     public static void scanPorts() {
+        table.add(String.format(FORMAT_PATTERN, PROTOCOL_PRINT, PORT_PRINT, SERVICE_PRINT));
         System.out.format(FORMAT_PATTERN, PROTOCOL_PRINT, PORT_PRINT, SERVICE_PRINT);
-        for (int portNumber = START_PORT; portNumber <= END_PORT + 1; portNumber++) {
+        for (int portNumber = START_PORT; portNumber <= END_PORT; portNumber++) {
             try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
-                System.out.format(FORMAT_PATTERN, TCP_PRINT, portNumber, "");
+                table.add(String.format(FORMAT_PATTERN, "", portNumber, "Port open"));
+                System.out.format(FORMAT_PATTERN, "", portNumber, "Port open");
             } catch (IOException e) {
                 try (DatagramSocket datagramSocket = new DatagramSocket(portNumber)) {
-                    System.out.format(FORMAT_PATTERN, UDP_PRINT, portNumber, "");
+                    table.add(String.format(FORMAT_PATTERN, "", portNumber, "Port open"));
+                    System.out.format(FORMAT_PATTERN, "", portNumber, "Port open");
                 } catch (SocketException ex) {
                     if (KNOWN_PORTS.containsKey(portNumber)) {
+                        table.add(String.format(FORMAT_PATTERN, KNOWN_PORTS.get(portNumber).get(0),
+                            portNumber, KNOWN_PORTS.get(portNumber).get(1)
+                        ));
                         System.out.format(FORMAT_PATTERN, KNOWN_PORTS.get(portNumber).get(0),
                             portNumber, KNOWN_PORTS.get(portNumber).get(1)
                         );
                     } else {
+                        table.add(String.format(FORMAT_PATTERN, "", portNumber, ""));
                         System.out.format(FORMAT_PATTERN, "", portNumber, "");
                     }
-
                 }
             }
         }
