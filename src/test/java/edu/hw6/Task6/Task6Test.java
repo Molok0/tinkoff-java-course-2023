@@ -13,7 +13,7 @@ class Task6Test {
         Task6.getTable();
         assertThat(Task6.getTable()).isEqualTo(List.of(
             String.format(FORMAT_PATTERN, "Protocol", "Port", "Service"),
-            String.format(FORMAT_PATTERN, "", "0", "Port Open"),
+            String.format(FORMAT_PATTERN, "", "0", "Port open"),
             String.format(FORMAT_PATTERN, "TCP", "1", "TCPMUX"),
             String.format(FORMAT_PATTERN, "UDP", "2", "COMPRESSNET"),
             String.format(FORMAT_PATTERN, "UDP", "3", "COMPRESSNET"),
