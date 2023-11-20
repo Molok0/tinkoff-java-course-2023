@@ -1,7 +1,10 @@
 package edu.hw1;
 
-public class Task1 {
-    private final static int sec = 60;
+public final class Task1 {
+    private Task1() {
+    }
+
+    private final static int SEC = 60;
 
     public static long minutesToSeconds(String a) {
         String[] time = a.split(":");
@@ -9,10 +12,10 @@ public class Task1 {
         int minuts = Integer.parseInt(time[0]);
         int secunds = Integer.parseInt(time[1]);
 
-        if (secunds >= sec) {
+        if (secunds >= SEC) {
             return -1;
         }
 
-        return minuts * sec + secunds;
+        return minuts * SEC + secunds;
     }
 }

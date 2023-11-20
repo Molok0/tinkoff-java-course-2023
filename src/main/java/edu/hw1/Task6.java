@@ -1,48 +1,60 @@
 package edu.hw1;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import static java.util.Collections.min;
-import static java.util.Collections.reverse;
-import static java.util.Collections.sort;
 
-public class Task6 {
-    private static final int numberK = 6174;
+public final class Task6 {
+    private static final int NUMBER_K = 6174;
+    private static final int NUMBER_DIVIDE_10 = 10;
+    private static final int INCREASE_ORDER = 10;
+
+    private Task6() {
+    }
 
     public static int countK(int number) {
         int count = 0;
-        return start(number,count);
+        return start(number, count);
     }
 
-    private static int start(int number, int count){
-        if (number == numberK) {
+    private static int start(int number, int count) {
+        int tmp = number;
+        if (check(tmp)) {
+            return -1;
+        }
+        if (tmp == NUMBER_K) {
             return count;
         } else {
             ArrayList<Integer> numbers = new ArrayList<>();
 
-            while (number != 0) {
-                numbers.add(0, number % 10);
-                number /= 10;
+            while (tmp != 0) {
+                numbers.add(0, tmp % NUMBER_DIVIDE_10);
+                tmp /= NUMBER_DIVIDE_10;
             }
             Collections.sort(numbers);
             int minNumber = digitsToNumber(numbers);
             Collections.reverse(numbers);
             int maxNumber = digitsToNumber(numbers);
 
-            number = maxNumber - minNumber;
-            count += 1;
-            return start(number, count);
+            tmp = maxNumber - minNumber;
+            return start(tmp, count + 1);
         }
     }
 
     private static int digitsToNumber(ArrayList<Integer> digits) {
         int number = 0;
         for (int digit : digits) {
-            number = number * 10 + digit;
+            number = number * INCREASE_ORDER + digit;
         }
         return number;
     }
 
+    private static boolean check(int number) {
+        char[] num = Integer.toString(number).toCharArray();
+        for (int i = 0; i < num.length - 1; i++) {
+            if (num[i] != num[i + 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
-

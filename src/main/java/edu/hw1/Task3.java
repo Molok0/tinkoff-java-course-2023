@@ -1,9 +1,11 @@
 package edu.hw1;
 
 import java.util.Arrays;
-import static java.util.Arrays.sort;
 
-public class Task3 {
+public final class Task3 {
+    private Task3() {
+    }
+
     public static boolean isNestable(int[] a1, int[] a2) {
         if (a1.length == 0 || a2.length == 0) {
             return false;
