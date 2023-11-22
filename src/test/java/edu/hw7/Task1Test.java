@@ -14,4 +14,8 @@ class Task1Test {
     void incrementTest2() {
         assertThat(Task1.increment(0)).isEqualTo(60);
     }
+    @Test
+    void incrementTest3() {
+        assertThat(Task1.increment(-60)).isEqualTo(0);
+    }
 }
