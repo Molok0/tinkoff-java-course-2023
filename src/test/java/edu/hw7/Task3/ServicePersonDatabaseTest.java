@@ -10,19 +10,22 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class ServicePersonDatabaseTest {
 
     @Test
-    void servicePersonDatabaseTestSize() throws InterruptedException {
+    void servicePersonDatabaseTestSize() {
+        try {
+            int sizeDb = 100000;
+            PersonDatabase db = new ServicePersonDatabase();
+            ExecutorService executorService = Executors.newFixedThreadPool(20);
+            for (int i = 0; i < sizeDb; i++) {
+                Person person = new Person(i, "Person " + i, "Address " + i, "Number " + i);
+                executorService.execute(() -> db.add(person));
+            }
+            executorService.shutdown();
+            executorService.awaitTermination(1, TimeUnit.MINUTES);
 
-        int sizeDb = 100000;
-        PersonDatabase db = new ServicePersonDatabase();
-        ExecutorService executorService = Executors.newFixedThreadPool(20);
-        for (int i = 0; i < sizeDb; i++) {
-            Person person = new Person(i, "Person " + i, "Address " + i, "Number " + i);
-            executorService.execute(() -> db.add(person));
+            assertThat(sizeDb).isEqualTo(db.getSize());
+        } catch (InterruptedException e) {
+
         }
-        executorService.shutdown();
-        executorService.awaitTermination(1, TimeUnit.MINUTES);
-
-        assertThat(sizeDb).isEqualTo(db.getSize());
     }
 
 }
