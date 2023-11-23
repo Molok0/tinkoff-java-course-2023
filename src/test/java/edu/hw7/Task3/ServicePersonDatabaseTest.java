@@ -10,7 +10,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class ServicePersonDatabaseTest {
 
     @Test
-    void servicePersonDatabaseTestSize() {
+    void servicePersonDatabaseTestSize() throws InterruptedException {
 
         int sizeDb = 100000;
         PersonDatabase db = new ServicePersonDatabase();
