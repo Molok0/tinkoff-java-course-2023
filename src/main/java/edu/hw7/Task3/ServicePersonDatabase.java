@@ -47,4 +47,10 @@ public class ServicePersonDatabase implements PersonDatabase {
                     && person.address() != null).toList();
         }
     }
+
+    public int getSize() {
+        synchronized (personCache) {
+            return personCache.size();
+        }
+    }
 }

@@ -18,4 +18,13 @@ class Task1Test {
     void incrementTest3() {
         assertThat(Task1.increment(-60)).isEqualTo(0);
     }
+
+    @Test
+    void incrementTes4() {
+        assertThat(Task1.increment(10000)).isEqualTo(10060);
+    }
+    @Test
+    void incrementTes5() {
+        assertThat(Task1.increment(-10000)).isEqualTo(-9940);
+    }
 }

@@ -10,6 +10,15 @@ public class LockPersonDatabase implements PersonDatabase {
     private static volatile Map<Integer, Person> personCache = new HashMap<>();
     private static ReadWriteLock lock = new ReentrantReadWriteLock();
 
+    public int getSize() {
+        lock.writeLock().lock();
+        try {
+            return personCache.size();
+        } finally {
+            lock.writeLock().unlock();
+        }
+    }
+
     @Override
     public void add(Person person) {
         lock.writeLock().lock();
