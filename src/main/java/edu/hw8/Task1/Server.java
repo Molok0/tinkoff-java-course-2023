@@ -53,7 +53,7 @@ public class Server {
                     register(selector, serverSocket);
                 }
                 if (key.isReadable()) {
-                    executorService.execute(() -> {
+                    executorService.submit(() -> {
                         try {
                             answer(key);
                         } catch (IOException e) {
