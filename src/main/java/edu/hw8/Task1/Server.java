@@ -18,6 +18,8 @@ public class Server {
 
     private static final int PORT = 1090;
     private static final String HOSTNAME = "localhost";
+    private static final int THREADS_COUNT = 10;
+    private static int bufferSize = 256;
 
     private static final Map<String, String> WORDS = new HashMap<>();
 
@@ -41,7 +43,7 @@ public class Server {
         serverSocket.configureBlocking(false);
         serverSocket.register(selector, SelectionKey.OP_ACCEPT);
 
-        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        ExecutorService executorService = Executors.newFixedThreadPool(THREADS_COUNT);
 
         while (true) {
             selector.select();
@@ -68,7 +70,7 @@ public class Server {
 
     private void answer(SelectionKey key) throws IOException {
         SocketChannel client = (SocketChannel) key.channel();
-        ByteBuffer buffer = ByteBuffer.allocate(256);
+        ByteBuffer buffer = ByteBuffer.allocate(bufferSize);
         int r = client.read(buffer);
         if (r == -1) {
             client.close();

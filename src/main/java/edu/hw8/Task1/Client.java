@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Client {
-    private static final int SLEEP_TIME = 500;
+    private final static Logger LOGGER = LogManager.getLogger();
     private static final int PORT = 1090;
     private static final String HOSTNAME = "localhost";
     private static ByteBuffer buffer;
+    private static int bufferSize = 256;
 
     public Client() {
     }
@@ -17,8 +20,8 @@ public class Client {
     public void start() {
         try (SocketChannel client = SocketChannel.open()) {
             client.connect(new InetSocketAddress(HOSTNAME, PORT));
-            buffer = ByteBuffer.allocate(256);
-            System.out.println(sendMessage("глупый", client) + "1");
+            buffer = ByteBuffer.allocate(bufferSize);
+            LOGGER.info(sendMessage("глупый", client) + "1");
         } catch (IOException e) {
 
         }
@@ -35,7 +38,7 @@ public class Client {
             buffer.clear();
             client.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info(e);
         }
         return response;
     }
