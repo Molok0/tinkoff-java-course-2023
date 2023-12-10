@@ -1,4 +1,4 @@
-package edu.project4;
+package edu.project4.Processors;
 
 import edu.project4.Models.FractalImage;
 

@@ -1,7 +1,13 @@
 package edu.project4.Models;
 
-public record FractalImage(Pixel[] data, int width, int height) {
+public record FractalImage(Pixel[][] data, int width, int height) {
     public static FractalImage create(int width, int height) {
+        var data = new Pixel[height][width];
+        for (int x = 0; x < height; x++) {
+            for (int y = 0; y < width; y++) {
+                data[x][y] = new Pixel(0, 0, 0, 0);
+            }
+        }
         return null;
     }
 
@@ -9,7 +15,7 @@ public record FractalImage(Pixel[] data, int width, int height) {
         return false;
     }
 
-    Pixel pixel(int x, int y) {
-        return null;
+    public Pixel pixel(int x, int y) {
+        return data[x][y];
     }
 }
