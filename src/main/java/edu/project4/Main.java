@@ -4,6 +4,8 @@ import edu.project4.Models.AffineCoefficients;
 import edu.project4.Models.FractalImage;
 import edu.project4.Models.Rect;
 import edu.project4.Renderers.SingleThreadedRenderer;
+import edu.project4.Save.ImageFormat;
+import edu.project4.Save.ImageUtils;
 import edu.project4.Transformations.AffineTransformation;
 import edu.project4.Transformations.Disk;
 import edu.project4.Transformations.Heart;
@@ -12,6 +14,7 @@ import edu.project4.Transformations.Sinusoidal;
 import edu.project4.Transformations.Spherical;
 import edu.project4.Transformations.Swirl;
 import edu.project4.Transformations.Transformation;
+import java.nio.file.Path;
 import java.util.List;
 
 public class Main {
@@ -31,5 +34,6 @@ public class Main {
         );
         Rect world = new Rect(-1.77, -1, 1.77, 1);
         var fractal = renderer.render(canvas, world, transformations, 200_000, (short) 1500, 10);
+        ImageUtils.save(fractal, Path.of(System.getProperty("user.dir")), ImageFormat.JPEG);
     }
 }
