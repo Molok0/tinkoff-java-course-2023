@@ -8,7 +8,7 @@ public record FractalImage(Pixel[][] data, int width, int height) {
                 data[x][y] = new Pixel(0, 0, 0, 0);
             }
         }
-        return null;
+        return new FractalImage(data,width,height);
     }
 
     boolean contains(int x, int y) {

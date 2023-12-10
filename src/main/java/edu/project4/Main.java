@@ -34,6 +34,7 @@ public class Main {
         );
         Rect world = new Rect(-1.77, -1, 1.77, 1);
         var fractal = renderer.render(canvas, world, transformations, 200_000, (short) 1500, 10);
-        ImageUtils.save(fractal, Path.of(System.getProperty("user.dir")), ImageFormat.JPEG);
+        ImageUtils.save(fractal, Path.of("C:\\Users\\dopro\\IdeaProjects\\java-course-2023\\src\\main\\java\\edu\\project4\\1.jpg"), ImageFormat.JPEG);
     }
+
 }

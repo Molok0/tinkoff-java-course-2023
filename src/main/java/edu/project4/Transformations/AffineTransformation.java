@@ -47,8 +47,9 @@ public class AffineTransformation implements Transformation {
                 continue;
             }
             affineCoefficientsList.add(new AffineCoefficients(a, b, c, d, e, f, rr, gg, bb));
+            n+=1;
         }
-        return null;
+        return affineCoefficientsList;
     }
 
     private static boolean checkCoeff(double a, double b, double c, double d, double e, double f) {

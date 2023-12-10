@@ -15,7 +15,7 @@ public class SingleThreadedRenderer implements Renderer {
     private static final double xMin = -1.777;
     private static final double xMax = 1.777;
     private static final double yMin = -1;
-    private static final double yMax = -1;
+    private static final double yMax = 1;
     private static final double symmetry = 2;
     private final int xRes;
     private final int yRes;
@@ -37,6 +37,7 @@ public class SingleThreadedRenderer implements Renderer {
             Point pw = new Point(newX, newY);
 
             for (short step = 0; step < iterPerSample; ++step) {
+
                 int i = random.nextInt(0, COEFFICIENTS.size());
                 double x =
                     COEFFICIENTS.get(i).a() * pw.x() + COEFFICIENTS.get(i).b() * pw.y() + COEFFICIENTS.get(i).c();
@@ -48,12 +49,11 @@ public class SingleThreadedRenderer implements Renderer {
                 pw = variation.apply(new Point(x, y));
 
                 double theta2 = 0.0;
+
                 for (int s = 0; s < symmetry; theta2 += Math.PI * 2 / symmetry, ++s) {
 
                     var pwr = pw.rotate(theta2);
-                    if (!world.contains(pwr)) {
-                        continue;
-                    }
+
                     int ansX = (int) (xRes - ((xMax - pwr.x())) / (xMax - xMin)) * xRes;
                     int ansY = (int) (yRes - ((yMax - pwr.y())) / (yMax - yMin)) * yRes;
 
@@ -83,6 +83,6 @@ public class SingleThreadedRenderer implements Renderer {
                 }
             }
         }
-        return null;
+        return canvas;
     }
 }
