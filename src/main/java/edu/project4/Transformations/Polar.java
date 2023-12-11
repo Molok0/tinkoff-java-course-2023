@@ -7,7 +7,7 @@ public class Polar implements Transformation {
     public Point apply(Point point) {
         double x = point.x();
         double y = point.y();
-        double newX = Math.atan(y / x) / Math.PI;
+        double newX = Math.atan2(y, x) / Math.PI;
         double newY = Math.pow(x * x + y * y, 0.5) - 1;
 
         return new Point(newX, newY);

@@ -8,7 +8,7 @@ public class Heart implements Transformation {
         double x = point.x();
         double y = point.y();
         double r = Math.pow(x * x + y * y, 0.5);
-        double tmp = r * Math.atan(y / x);
+        double tmp = r * Math.atan2(y, x);
 
         return new Point(r * Math.sin(tmp), -r * Math.cos(tmp));
     }

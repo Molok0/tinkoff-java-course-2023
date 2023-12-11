@@ -12,10 +12,7 @@ import java.util.Random;
 public class SingleThreadedRenderer implements Renderer {
 
     private final List<AffineCoefficients> COEFFICIENTS;
-    private static final double xMin = -1.777;
-    private static final double xMax = 1.777;
-    private static final double yMin = -1;
-    private static final double yMax = 1;
+
     private static final double symmetry = 1;
 
     public SingleThreadedRenderer(List<AffineCoefficients> coefficients) {
@@ -27,6 +24,10 @@ public class SingleThreadedRenderer implements Renderer {
         FractalImage canvas, Rect world, List<Transformation> variations, int samples, short iterPerSample, long seed
     ) {
         Random random = new Random();
+        double xMin = world.x();
+        double xMax = world.width();
+        double yMin = world.y();
+        double yMax = world.height();
         for (int num = 0; num < samples; ++num) {
             double newX = random.nextDouble(xMin, xMax);
             double newY = random.nextDouble(yMin, yMax);
@@ -52,8 +53,7 @@ public class SingleThreadedRenderer implements Renderer {
 
                     int ansX = (int) (canvas.width() - ((xMax - pwr.x()) / (xMax - xMin)) * canvas.width());
                     int ansY = (int) (canvas.height() - ((yMax - pwr.y()) / (yMax - yMin)) * canvas.height());
-                    System.out.println(ansX);
-                    System.out.println(ansY);
+
                     if (ansX < canvas.width() && ansY < canvas.height() && ansX > 0 && ansY > 0) {
                         Pixel pixel = canvas.pixel(ansY, ansX);
                         if (pixel.hitCount() == 0) {
@@ -62,7 +62,8 @@ public class SingleThreadedRenderer implements Renderer {
                                     COEFFICIENTS.get(i).rr(),
                                     COEFFICIENTS.get(i).gg(),
                                     COEFFICIENTS.get(i).bb(),
-                                    1
+                                    1,
+                                    canvas.data()[ansY][ansX].normal()
                                 );
                         } else {
                             canvas.data()[ansY][ansX] =
@@ -70,7 +71,8 @@ public class SingleThreadedRenderer implements Renderer {
                                     (COEFFICIENTS.get(i).rr() + pixel.r()) / 2,
                                     (COEFFICIENTS.get(i).gg() + pixel.g()) / 2,
                                     (COEFFICIENTS.get(i).bb() + pixel.b()) / 2,
-                                    pixel.hitCount() + 1
+                                    pixel.hitCount() + 1,
+                                    canvas.data()[ansY][ansX].normal()
                                 );
                         }
                     }

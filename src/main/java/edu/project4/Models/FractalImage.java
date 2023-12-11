@@ -5,7 +5,7 @@ public record FractalImage(Pixel[][] data, int width, int height) {
         var data = new Pixel[height][width];
         for (int x = 0; x < height; x++) {
             for (int y = 0; y < width; y++) {
-                data[x][y] = new Pixel(0, 0, 0, 0);
+                data[x][y] = new Pixel(0, 0, 0, 0, 0);
             }
         }
         return new FractalImage(data,width, height);
