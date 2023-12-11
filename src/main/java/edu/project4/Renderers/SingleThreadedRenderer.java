@@ -16,14 +16,10 @@ public class SingleThreadedRenderer implements Renderer {
     private static final double xMax = 1.777;
     private static final double yMin = -1;
     private static final double yMax = 1;
-    private static final double symmetry = 2;
-    private final int xRes;
-    private final int yRes;
+    private static final double symmetry = 1;
 
-    public SingleThreadedRenderer(List<AffineCoefficients> coefficients, int xRes, int yRes) {
+    public SingleThreadedRenderer(List<AffineCoefficients> coefficients) {
         this.COEFFICIENTS = coefficients;
-        this.xRes = xRes;
-        this.yRes = yRes;
     }
 
     @Override
@@ -54,13 +50,14 @@ public class SingleThreadedRenderer implements Renderer {
 
                     var pwr = pw.rotate(theta2);
 
-                    int ansX = (int) (xRes - ((xMax - pwr.x())) / (xMax - xMin)) * xRes;
-                    int ansY = (int) (yRes - ((yMax - pwr.y())) / (yMax - yMin)) * yRes;
-
-                    if (ansX < xRes && ansY < yRes && ansX > 0 && ansY > 0) {
-                        Pixel pixel = canvas.pixel(ansX, ansY);
+                    int ansX = (int) (canvas.width() - ((xMax - pwr.x()) / (xMax - xMin)) * canvas.width());
+                    int ansY = (int) (canvas.height() - ((yMax - pwr.y()) / (yMax - yMin)) * canvas.height());
+                    System.out.println(ansX);
+                    System.out.println(ansY);
+                    if (ansX < canvas.width() && ansY < canvas.height() && ansX > 0 && ansY > 0) {
+                        Pixel pixel = canvas.pixel(ansY, ansX);
                         if (pixel.hitCount() == 0) {
-                            canvas.data()[ansX][ansY] =
+                            canvas.data()[ansY][ansX] =
                                 new Pixel(
                                     COEFFICIENTS.get(i).rr(),
                                     COEFFICIENTS.get(i).gg(),
@@ -68,7 +65,7 @@ public class SingleThreadedRenderer implements Renderer {
                                     1
                                 );
                         } else {
-                            canvas.data()[ansX][ansY] =
+                            canvas.data()[ansY][ansX] =
                                 new Pixel(
                                     (COEFFICIENTS.get(i).rr() + pixel.r()) / 2,
                                     (COEFFICIENTS.get(i).gg() + pixel.g()) / 2,
