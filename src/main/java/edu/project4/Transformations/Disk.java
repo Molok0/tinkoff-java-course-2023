@@ -7,7 +7,7 @@ public class Disk implements Transformation {
     public Point apply(Point point) {
         double x = point.x();
         double y = point.y();
-        double r = Math.pow(x * x + y * y, 0.5);
+        double r = Math.sqrt(x * x + y * y);
         double tmp1 = (1 / Math.PI) * Math.atan2(y, x);
         double tmp2 = Math.PI * r;
 

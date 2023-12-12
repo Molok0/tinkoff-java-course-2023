@@ -6,11 +6,12 @@ import static java.lang.Math.log10;
 import static java.lang.Math.pow;
 
 public class GammaCorrectionProcessor implements ImageProcessor {
+
+    private static final double GAMMA = 2.2;
+
     @Override
     public void process(FractalImage image) {
         double max = 0.0;
-        double gamma = 2.2;
-
         for (int row = 0; row < image.width(); row++) {
             for (int col = 0; col < image.height(); col++) {
                 var px = image.data()[col][row];
@@ -27,9 +28,9 @@ public class GammaCorrectionProcessor implements ImageProcessor {
             for (int col = 0; col < image.height(); col++) {
                 var px = image.data()[col][row];
                 double normal = px.normal() / max;
-                int r = (int) (px.r() * pow(px.normal(), (1.0 / gamma)));
-                int g = (int) (px.g() * pow(px.normal(), (1.0 / gamma)));
-                int b = (int) (px.b() * pow(px.normal(), (1.0 / gamma)));
+                int r = (int) (px.r() * pow(px.normal(), (1.0 / GAMMA)));
+                int g = (int) (px.g() * pow(px.normal(), (1.0 / GAMMA)));
+                int b = (int) (px.b() * pow(px.normal(), (1.0 / GAMMA)));
                 image.data()[col][row] = new Pixel(r, g, b, px.hitCount(), normal);
             }
         }

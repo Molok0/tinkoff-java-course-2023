@@ -2,13 +2,19 @@ package edu.project4.Save;
 
 import edu.project4.Models.FractalImage;
 import edu.project4.Models.Pixel;
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import javax.imageio.ImageIO;
 
 public final class ImageUtils {
+    private static final int SHIFT16 = 16;
+    private static final int SHIFT8 = 8;
+
+    private ImageUtils() {
+    }
+
     public static void save(FractalImage image, Path filename, ImageFormat format) {
         Pixel[][] pixel = image.data();
         int width = pixel[0].length;
@@ -23,17 +29,17 @@ public final class ImageUtils {
                 int green = pixelValue.g();
                 int blue = pixelValue.b();
 
-                int colorRGB = (red << 16) | (green << 8) | blue;
+                int colorRGB = (red << SHIFT16) | (green << SHIFT8) | blue;
+
                 bufferedImage.setRGB(x, y, colorRGB);
             }
         }
 
         File output = new File(filename.toUri());
         try {
-            System.out.println(output);
-            ImageIO.write(bufferedImage, "jpg", output);
+            ImageIO.write(bufferedImage, format.toString(), output);
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
     }
 }

@@ -7,7 +7,7 @@ public class Swirl implements Transformation {
     public Point apply(Point point) {
         double x = point.x();
         double y = point.y();
-        double r = Math.pow(x * x + y * y, 0.5);
+        double r = Math.sqrt(x * x + y * y);
         double tmp1 = x * Math.sin(r * r);
         double tmp2 = x * Math.cos(r * r);
 

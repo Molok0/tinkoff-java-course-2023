@@ -8,7 +8,7 @@ public class Polar implements Transformation {
         double x = point.x();
         double y = point.y();
         double newX = Math.atan2(y, x) / Math.PI;
-        double newY = Math.pow(x * x + y * y, 0.5) - 1;
+        double newY = Math.sqrt(x * x + y * y) - 1;
 
         return new Point(newX, newY);
     }

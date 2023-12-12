@@ -11,12 +11,12 @@ import java.util.Random;
 
 public class SingleThreadedRenderer implements Renderer {
 
-    private final List<AffineCoefficients> COEFFICIENTS;
+    private final List<AffineCoefficients> coefficients;
 
-    private static final double symmetry = 1;
+    private static final double SYMMETRY = 1;
 
     public SingleThreadedRenderer(List<AffineCoefficients> coefficients) {
-        this.COEFFICIENTS = coefficients;
+        this.coefficients = coefficients;
     }
 
     @Override
@@ -35,11 +35,11 @@ public class SingleThreadedRenderer implements Renderer {
 
             for (short step = 0; step < iterPerSample; ++step) {
 
-                int i = random.nextInt(0, COEFFICIENTS.size());
+                int i = random.nextInt(0, coefficients.size());
                 double x =
-                    COEFFICIENTS.get(i).a() * pw.x() + COEFFICIENTS.get(i).b() * pw.y() + COEFFICIENTS.get(i).c();
+                    coefficients.get(i).a() * pw.x() + coefficients.get(i).b() * pw.y() + coefficients.get(i).c();
                 double y =
-                    COEFFICIENTS.get(i).d() * pw.x() + COEFFICIENTS.get(i).e() * pw.y() + COEFFICIENTS.get(i).f();
+                    coefficients.get(i).d() * pw.x() + coefficients.get(i).e() * pw.y() + coefficients.get(i).f();
 
                 Transformation variation = variations.get(random.nextInt(0, variations.size()));
 
@@ -47,7 +47,7 @@ public class SingleThreadedRenderer implements Renderer {
 
                 double theta2 = 0.0;
 
-                for (int s = 0; s < symmetry; theta2 += Math.PI * 2 / symmetry, ++s) {
+                for (int s = 0; s < SYMMETRY; theta2 += Math.PI * 2 / SYMMETRY, ++s) {
 
                     var pwr = pw.rotate(theta2);
 
@@ -56,29 +56,27 @@ public class SingleThreadedRenderer implements Renderer {
 
                     if (ansX < canvas.width() && ansY < canvas.height() && ansX > 0 && ansY > 0) {
                         Pixel pixel = canvas.pixel(ansY, ansX);
+
                         if (pixel.hitCount() == 0) {
                             canvas.data()[ansY][ansX] =
                                 new Pixel(
-                                    COEFFICIENTS.get(i).rr(),
-                                    COEFFICIENTS.get(i).gg(),
-                                    COEFFICIENTS.get(i).bb(),
+                                    coefficients.get(i).rr(),
+                                    coefficients.get(i).gg(),
+                                    coefficients.get(i).bb(),
                                     1,
                                     canvas.data()[ansY][ansX].normal()
                                 );
                         } else {
                             canvas.data()[ansY][ansX] =
                                 new Pixel(
-                                    (COEFFICIENTS.get(i).rr() + pixel.r()) / 2,
-                                    (COEFFICIENTS.get(i).gg() + pixel.g()) / 2,
-                                    (COEFFICIENTS.get(i).bb() + pixel.b()) / 2,
+                                    (coefficients.get(i).rr() + pixel.r()) / 2,
+                                    (coefficients.get(i).gg() + pixel.g()) / 2,
+                                    (coefficients.get(i).bb() + pixel.b()) / 2,
                                     pixel.hitCount() + 1,
                                     canvas.data()[ansY][ansX].normal()
                                 );
                         }
                     }
-
-                    // 1. делаем лок на время работы с пикселем
-                    // 2. подмешиваем цвет и увеличиваем hit count
                 }
             }
         }
