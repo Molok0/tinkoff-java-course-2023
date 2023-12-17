@@ -51,11 +51,11 @@ public class ReflectionBenchmark {
         student = new Student(NAME, SURNAME);
         method = student.getClass().getMethod(METHOD);
         methodHandle = getMethodHandle();
-        lambdaMetafactory = getLambdaMetafactory();
+//        lambdaMetafactory = getLambdaMetafactory();
     }
-
-    private LambdaMetafactory getLambdaMetafactory() {
-    }
+//
+//    private LambdaMetafactory getLambdaMetafactory() {
+//    }
 
     private MethodHandle getMethodHandle() throws NoSuchMethodException, IllegalAccessException {
         MethodHandles.Lookup lookup = MethodHandles.lookup();
