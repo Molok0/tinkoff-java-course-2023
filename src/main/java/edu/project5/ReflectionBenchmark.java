@@ -1,5 +1,8 @@
 package edu.project5;
 
+import java.lang.invoke.LambdaMetafactory;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
@@ -35,16 +38,31 @@ public class ReflectionBenchmark {
         new Runner(options).run();
     }
 
-    record Student(String name, String surname) {
-    }
-
     private Student student;
     private Method method;
+    private MethodHandle methodHandle;
+    private LambdaMetafactory lambdaMetafactory;
+    private static final String METHOD = "name";
+    private static final String NAME = "Oleg";
+    private static final String SURNAME = "Own";
 
     @Setup
-    public void setup() throws NoSuchMethodException {
-        student = new Student("Alexander", "Biryukov");
-        method = null;
+    public void setup() throws NoSuchMethodException, IllegalAccessException {
+        student = new Student(NAME, SURNAME);
+        method = student.getClass().getMethod(METHOD);
+        methodHandle = getMethodHandle();
+        lambdaMetafactory = getLambdaMetafactory();
+    }
+
+    private LambdaMetafactory getLambdaMetafactory() {
+    }
+
+    private MethodHandle getMethodHandle() throws NoSuchMethodException, IllegalAccessException {
+        MethodHandles.Lookup lookup = MethodHandles.lookup();
+        Method thisMethod  = Student.class.getDeclaredMethod(METHOD);
+        thisMethod.setAccessible(true);
+        MethodHandle ans = lookup.unreflect(thisMethod);
+        return ans;
     }
 
     @Benchmark
@@ -55,6 +73,18 @@ public class ReflectionBenchmark {
 
     @Benchmark
     public void reflection(Blackhole bh) throws InvocationTargetException, IllegalAccessException {
-        // TODO
+         var name = (String) method.invoke(student);
+         bh.consume(name);
     }
+    @Benchmark
+    public void methodHandles(Blackhole bh) throws Throwable {
+        var name = (String) methodHandle.invoke(student);
+        bh.consume(name);
+    }
+
+//    @Benchmark
+//    public void lambdaMetafactory(Blackhole bh) throws InvocationTargetException, IllegalAccessException {
+//        var name = (String) lambdaMetafactory.invoke(student);
+//        bh.consume(name);
+//    }
 }
